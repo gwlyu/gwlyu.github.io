@@ -60,7 +60,7 @@
     .wrap{
       max-width: var(--maxw);
       margin: 0 auto;
-      padding: 6px 18px 72px;
+      padding: 26px 18px 72px;
     }
 
     /* ===== Header (photo, name, icons) ===== */
@@ -117,7 +117,6 @@
       color: color-mix(in srgb, var(--accent) 30%, var(--text) 90%);
     }
 
-
     .subname{
       margin-top: 4px;
       color: var(--muted);
@@ -163,11 +162,11 @@
       justify-content:center;
       gap: 10px;
       flex-wrap:wrap;
-      margin: 0px 0 18px; /* Remove top margin */
+      margin: 10px 0 18px;
       position: sticky;
       top: 0;
       z-index: 30;
-      padding: 2px 0; /* Reduce vertical padding */
+      padding: 10px 0;
       backdrop-filter: blur(10px);
       background: color-mix(in srgb, var(--bg) 76%, transparent);
       border-bottom: 1px solid var(--border);
@@ -176,9 +175,8 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      height: 45px; /* Increase height */
-      padding: 0 18px; /* Wider buttons */
-      font-size: 0.95rem;    /* Slightly larger text */
+      height: 40px;
+      padding: 0 14px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: color-mix(in srgb, var(--card) 92%, transparent);
@@ -398,16 +396,6 @@
 
 <body>
   <main class="wrap">
-
-    <!-- 4 buttons: About, Research Projects, Weekly Logs, Notes -->
-    <nav class="nav" aria-label="Sections">
-      <button class="btn" data-jump="#about" aria-current="page">About</button>
-      <button class="btn" data-jump="#projects">Research Projects</button>
-      <button class="btn" data-jump="#logs">Weekly Logs</button>
-      <button class="btn" data-jump="#notes">Notes</button>
-    </nav>
-   
-
     <!-- Header -->
     <header class="hero" id="top">
       <div class="photo" aria-label="Profile photo">
@@ -415,12 +403,13 @@
         <img
           src="data/images/avatar.jpg"
           alt="Profile photo"
-          onerror="this.remove(); this.parentElement.innerHTML='<div class=&quot;placeholder&quot;>Place <code>profile.jpg</code> next to this HTML file<br>or update the <code>src</code> in the HTML.</div>';"/>
+          onerror="this.remove(); this.parentElement.innerHTML='<div class=&quot;placeholder&quot;>Place <code>profile.jpg</code> next to this HTML file<br>or update the <code>src</code> in the HTML.</div>';"
+        />
       </div>
 
       <h1 class="name">
-        <span class="name-rest">吕振伟</span>
-        <a class="name-link" href="index_en.html" lang="zh">(Zhenwei Lyu)</a>
+        <span class="name-rest">Zhenwei Lyu</span>                                                                                                    
+        <a class="name-link" href="index.html" lang="zh">(吕振伟)</a>
       </h1>      
       <div class="subname">Dalian University of Technology · Assistant Professor · Gravitational Waves </div>
 
@@ -448,7 +437,7 @@
           </span>
           DUT
         </a>
-        
+
         <a class="iconlink" href="https://github.com/gwlyu" target="_blank" rel="noreferrer" aria-label="GitHub">
           <span class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -483,17 +472,13 @@
       </div>
     </header>
 
-
-
-    <!-- 4 buttons: About, Research Projects, Weekly Logs, Notes -->
-    <!--<nav class="nav" aria-label="Sections">
+    <!-- Only 3 buttons: About, Research Projects, Weekly Logs -->
+    <!-- <nav class="nav" aria-label="Sections">
       <button class="btn" data-jump="#about" aria-current="page">About</button>
       <button class="btn" data-jump="#projects">Research Projects</button>
       <button class="btn" data-jump="#logs">Weekly Logs</button>
-      <button class="btn" data-jump="#notes">Notes</button>
     </nav>
     -->
-   
 
     <!-- About -->
     <section class="section" id="about" aria-label="About">
@@ -531,21 +516,12 @@
       <!-- <p class="hint">Tip: Click a week to view details.</p> -->
     </section>
 
-    <!-- Notes & Reflections (clickable -> modal) -->
-    <section class="section" id="notes" aria-label="Notes & Reflections">
-      <h2>Notes & Reflections</h2>
-      <div class="rule"></div>
-
-      <div class="grid" id="notesList" aria-label="Notes list"></div>
-      <!-- <p class="hint">Tip: Click a note to view details.</p> -->
-    </section>
-
     <footer>
-      © <span id="year"></span> Zhenwei Lyu · Built with plain HTML/CSS/JS                                                       
+      © <span id="year"></span> Zhenwei Lyu · Built with plain HTML/CSS/JS
     </footer>
   </main>
 
-  <!-- Modal (shared across all sections) -->
+  <!-- Modal (shared for Projects + Logs) -->
   <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="overlay" id="overlay"></div>
     <div class="dialog" role="document">
@@ -572,9 +548,9 @@
   <!-- Include your data files -->
   <script src="data/projects.js"></script>
   <!-- many weekly files -->
-  <script src="data/logs/2026.js"></script>
-  <script src="data/logs/2025.js"></script>                                                                                                             
-  <script src="data/notes/2026.js"></script>                                                                                                                                                                                                                  
+  <script src="data/logs/2025.js"></script>
+  <script src="data/logs/2026.js"></script>                                                                                                             
+
 
 
 
@@ -609,7 +585,6 @@
     const aboutList = document.getElementById("aboutList");
     const projectsList = document.getElementById("projectsList");
     const logsList = document.getElementById("logsList");
-    const notesList = document.getElementById("notesList");
 
     function makeItemCard(entry, kind){
       const div = document.createElement("div");
@@ -638,10 +613,9 @@
       return div;
     }
 
-    ABOUT.forEach(a => aboutList.appendChild(makeItemCard(a, "about")));
+    ABOUT.forEach(p => aboutList.appendChild(makeItemCard(p, "about")));
     PROJECTS.forEach(p => projectsList.appendChild(makeItemCard(p, "project")));
     WEEKLY_LOGS.forEach(w => logsList.appendChild(makeItemCard(w, "weekly log")));
-    NOTES.forEach(n => notesList.appendChild(makeItemCard(n, "note")));
 
     // Navigation: only 3 buttons
     const navButtons = Array.from(document.querySelectorAll(".btn[data-jump]"));
@@ -683,26 +657,15 @@
     function openModal(entry, kind){
       lastFocus = document.activeElement;
 
-      modalTitle.textContent = entry.title || (
-        kind === "about" ? "" :                                                                                                  
-        kind === "project" ? "Research Project" :
-        kind === "weekly log" ? "Weekly Log" :
-        kind === "note" ? "Reflection Note" : ""
-      );
-      modalSubtitle.textContent = (entry.meta ? entry.meta + " · " : "") + (
-        kind === "about" ? "" :
-        kind === "project" ? "Research Project" :
-        kind === "weekly log" ? "Weekly Log" :
-        kind === "note" ? "Reflection Note" : ""
-      );
+      modalTitle.textContent = entry.title || (kind === "about" ? "" : kind === "project" ? "Project" : "Weekly Log");
+      modalSubtitle.textContent = (entry.meta ? entry.meta + " · " : "") + (kind === "about" ? "" : kind === "project" ? "Research Project" : "Weekly Log");
 
       // Body
       const parts = [];
       if (Array.isArray(entry.details) && entry.details.length){
         parts.push(`<p><strong>Details</strong></p>`);
         parts.push("<ul>");
-        //for (const line of entry.details) parts.push(`<li>${escapeHtml(line)}</li>`);
-        for (const line of entry.details) parts.push(`<li>${line}</li>`);
+        for (const line of entry.details) parts.push(`<li>${escapeHtml(line)}</li>`);
         parts.push("</ul>");
       } else {
         parts.push(`<p>${escapeHtml(entry.summary || "")}</p>`);
