@@ -15,7 +15,7 @@ window.PROJECTS = [
   ],
   figures: [
     {
-      src: "data/images/wet_emri_rate.png",
+      src: "data/images/wet_EMRI_rate.png",
       alt: "Forecasted rates for stellar-mass black hole (sBH) EMRIs.",
       caption: "The table presents total EMRI rates, LISA detection rates (with \\(\\mathrm{SNR} \\ge 20\\)), and rates for which the host AGN galaxy is resolvable.",
       layout: "below"  
