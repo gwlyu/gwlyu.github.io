@@ -2,7 +2,7 @@ window.WEEKLY_LOGS = window.WEEKLY_LOGS || [];
 
 window.WEEKLY_LOGS.push({
   title: "Autumn Semester (2025)",
-  meta: "Sep-Dec 2025",
+  meta: "Sep – Dec 2025",
   summary: "Semester focused on physics-informed neural architectures, gravitational‑wave parameter estimation, and paper reading.",
   details: [
     "<strong>Week 2:</strong> (Sep 14, C07-301) Plan for this semester; discuss the progress of the Student Innovation Project (Zexiang Wang, Hanzhi Hu).",
