@@ -7,6 +7,21 @@
   <title>Zhenwei Lyu — Personal Homepage</title>
   <meta name="description" content="Personal homepage: About, Research Projects, Weekly Logs, Notes & Reflections." />
 
+  <script>
+    // Configure MathJax before loading it
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["\\[", "\\]"]],
+      },
+      options: {
+        skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"],
+      },
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+
   <style>
     :root{
       --bg:#ffffff;
@@ -55,7 +70,7 @@
     }
 
     a{ color: var(--accent); text-decoration:none; }
-    a:hover{ text-decoration:underline; text-underline-offset:.18em; }
+    a:hover{ text-decoration:none; text-underline-offset:.18em; }
 
     .wrap{
       max-width: var(--maxw);
@@ -109,6 +124,12 @@
       color: color-mix(in srgb, var(--accent) 75%, var(--text));   
       text-decoration: none;
       font-weight: normal; /* keep or remove as desired */
+    }
+    /* on hover / keyboard focus */
+    h1.name .name-link:hover,
+    h1.name .name-link:focus-visible {
+      color: var(--text); /* or var(--accent) */
+      text-decoration: none;
     }
 
     /* non-linked part = not bold */
@@ -295,13 +316,90 @@
     }
     .modal[aria-hidden="false"]{ display:flex; }
     .overlay{
-      position:absolute;
-      inset:0;
+      position: absolute;
+      inset: 0;
       background: rgba(2,6,23,.52);
+      z-index: 0;
     }
+
+    /* ===== Figures inside modal ===== */
+    .figure-grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin: 12px 0 6px;
+    }
+    
+    .figure{
+      margin: 0;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: color-mix(in srgb, var(--card) 92%, transparent);
+    
+     /* Side-by-side: left image, right caption */
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+    }
+    
+    /* The link is ONLY the image area */                                  
+    .figure-link{
+      flex: 0 0 65%;
+      width: 65%;
+      display: block;
+      text-decoration: none; /* prevent underline */
+    }
+    
+    /* extra safety if you have a global a:hover underline rule */
+    .figure-link:hover,
+    .figure-link:focus,
+    .figure-link:focus-visible{
+      text-decoration: none;
+    }
+    
+    .figure-link img{
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+    }
+
+    /* caption takes remaining space on the right */
+    .figure figcaption{
+      flex: 1 1 auto;
+      padding: 0;            /* padding is on the <a> now */
+      font-family: var(--serif);
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+    /* Mobile: stack vertically */
+    @media (max-width: 720px){
+      .figure a{
+        flex-direction: column;
+      }
+      .figure img{
+        flex: none;
+        width: 100%;
+      }
+    }
+
     @media (prefers-color-scheme: dark){
       .overlay{ background: rgba(0,0,0,.62); }
     }
+
+    .entry-link:link{
+      color: color-mix(in srgb, var(--accent) 75%, var(--text)); }  /* normal */
+    .entry-link:hover{
+      color: var(--text); text-decoration: none; }
+    .entry-link:focus-visible{
+      outline: 2px solid currentColor; outline-offset: 2px; }
+
+    /* caption below the figure */
+    .figure--below{ flex-direction: column; align-items: center; }
+    .figure--below .figure-link{ width: 90%; flex: none; }
 
     .dialog{
       position:relative;
@@ -352,9 +450,16 @@
     .dialog .content{
       margin-top: 10px;
       color: var(--muted);
-      font-family: var(--serif);
+      font-family: var(--sans);
     }
     .dialog .content p{ margin: 0 0 10px; }
+    /* NEW: horizontal line above the "Details" heading in the modal */
+    .dialog .content .details-heading{
+      margin: 0 0 10px;              /* keep same spacing as other <p> */
+      padding-top: 12px;             /* gap between line and the word "Details" */
+      border-top: 3px solid var(--border);
+    }
+
     .chips{
       display:flex;
       flex-wrap:wrap;
@@ -572,7 +677,7 @@
   <script src="data/projects.js"></script>
   <!-- many weekly files -->
   <script src="data/logs/2026.js"></script>
-  <script src="data/logs/2025.js"></script>                                                                                                             
+  <script src="data/logs/2025.js" charset="utf-8"></script>                                                                                                             
   <script src="data/notes/2026.js"></script>                                                                                                                                                                                                                  
 
 
@@ -582,7 +687,7 @@
     const ABOUT = [
       {
         title: "Employment",
-        meta: "2024 — Present",
+        meta: "2022 — Present",
         details: [
           "Assistant Professor, Dalian University of Technology, 2024 - Present",
           "Boya Postdoctoral Fellow, Peking University, 2022 - 2024",
@@ -590,7 +695,7 @@
       },
       {
         title: "Education",
-        meta: "2011 — 2022",
+        meta: "2011 - 2022",
         details: [
           " Ph.D. in Gravitational Physics, University of Guelph, 2018 - 2022",
           " M. Sc. in Astrophysics, Beijing Normal University, 2015 - 2018",
@@ -626,9 +731,19 @@
       `;
 
       const open = () => openModal(entry, kind);
-      div.addEventListener("click", open);
+
+      div.addEventListener("click", (e) => {
+        // If user clicked a link (or button/input/etc), let it behave normally
+        const interactive = e.target.closest("a, button, input, textarea, select, summary, [role='button']");
+        if (interactive && interactive !== div) return;
+
+        open();
+      });
+
       div.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
+          // Only trigger when the card itself is the active element
+          if (document.activeElement !== div) return;
           e.preventDefault();
           open();
         }
@@ -636,6 +751,69 @@
 
       return div;
     }
+
+    
+    function renderFigures(figures){
+      if (!Array.isArray(figures) || figures.length === 0) return "";
+    
+      const items = figures
+        .map(f => renderFigure(f))
+        .filter(Boolean)
+        .join("");
+    
+      return items ? `<div class="figure-grid">${items}</div>` : "";
+    }
+    
+    /**
+     * Choose layout per-figure:
+     *   f.layout = "right" | "below"
+     * Default: "right"
+     */
+    function renderFigure(f){
+      const src = escapeAttr(f?.src || "");
+      if (!src) return "";
+    
+      const alt = escapeHtml(f?.alt || "");
+    
+      // Caption (text). If you want links, consider adding f.captionHtml (trusted) instead.
+      const captionText = f?.caption ? escapeHtml(f.caption) : "";
+      const caption = captionText ? `<figcaption>${captionText}</figcaption>` : "";
+    
+      const layout = (f?.layout || "right").toLowerCase();
+      if (layout === "below") return renderFigureCaptionBelow({ src, alt, caption });
+      return renderFigureCaptionRight({ src, alt, caption }); // default
+    }
+    
+    function renderFigureCaptionRight({ src, alt, caption }){
+      return `
+        <figure class="figure figure--right">
+          <a class="figure-link" href="${src}" target="_blank" rel="noopener noreferrer">
+            <img src="${src}" alt="${alt}" loading="lazy">
+          </a>
+          ${caption}
+        </figure>
+      `;
+    }
+    
+    function renderFigureCaptionBelow({ src, alt, caption }){
+      return `
+        <figure class="figure figure--below">
+          <a class="figure-link" href="${src}" target="_blank" rel="noopener noreferrer">
+            <img src="${src}" alt="${alt}" loading="lazy">
+          </a>
+          ${caption}
+        </figure>
+      `;
+    }
+
+
+    function typesetLatex(root = document.body) {
+      if (window.MathJax && MathJax.typesetPromise) {
+        return MathJax.typesetPromise([root]);
+      }
+      return Promise.resolve();
+    }
+
 
     ABOUT.forEach(a => aboutList.appendChild(makeItemCard(a, "about")));
     PROJECTS.forEach(p => projectsList.appendChild(makeItemCard(p, "project")));
@@ -697,10 +875,20 @@
 
       // Body
       const parts = [];
+
+      // (Optional but recommended) always show summary first if present
+      if (entry.summary) {
+        parts.push(`<p>${escapeHtml(entry.summary)}</p>`);
+      }
+      // NEW: figures block
+      parts.push(renderFigures(entry.figures));
+
+
       if (Array.isArray(entry.details) && entry.details.length){
-        parts.push(`<p><strong>Details</strong></p>`);
+        //parts.push(`<p><strong>Details</strong></p>`);
+        parts.push(`<p class="details-heading"><strong>Details</strong></p>`);
+
         parts.push("<ul>");
-        //for (const line of entry.details) parts.push(`<li>${escapeHtml(line)}</li>`);
         for (const line of entry.details) parts.push(`<li>${line}</li>`);
         parts.push("</ul>");
       } else {
@@ -711,12 +899,17 @@
         parts.push(`<p><strong>Links</strong></p>`);
         parts.push("<ul>");
         for (const l of entry.links){
-          parts.push(`<li><a href="${escapeAttr(l.href)}" target="_blank" rel="noreferrer">${escapeHtml(l.label)}</a></li>`);
+          parts.push(`<li><a class="entry-link" href="${escapeAttr(l.href)}" target="_blank" rel="noreferrer">${escapeHtml(l.label)}</a></li>`);
+
         }
         parts.push("</ul>");
       }
 
       modalBody.innerHTML = parts.join("");
+
+      // Render LaTeX inside the newly injected modal content
+      if (window.MathJax?.typesetClear) MathJax.typesetClear([modalBody]);
+      typesetLatex(modalBody);                                                                                                      
 
       // Tags
       modalChips.innerHTML = "";
