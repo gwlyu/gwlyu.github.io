@@ -820,7 +820,7 @@
     WEEKLY_LOGS.forEach(w => logsList.appendChild(makeItemCard(w, "weekly log")));
     NOTES.forEach(n => notesList.appendChild(makeItemCard(n, "note")));
 
-    // Navigation: only 3 buttons
+    // Navigation: buttons
     const navButtons = Array.from(document.querySelectorAll(".btn[data-jump]"));
     navButtons.forEach(btn => {
       btn.addEventListener("click", () => {
@@ -830,7 +830,7 @@
     });
 
     // Active button on scroll
-    const sections = ["#about", "#projects", "#logs"].map(sel => document.querySelector(sel));
+    const sections = ["#about", "#projects", "#logs", "#note"].map(sel => document.querySelector(sel));
     const setActive = (id) => {
       navButtons.forEach(b => {
         const isActive = b.getAttribute("data-jump") === "#" + id;
