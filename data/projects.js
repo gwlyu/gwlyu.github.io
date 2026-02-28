@@ -1,7 +1,7 @@
 window.PROJECTS = [
 {
   title: "Wet EMRIs: Formation Channels, Rates, Detectability, and Multi-messenger Science",
-  meta: "EMRIs • Phys. Rev. D (2021-2026)",
+  meta: "EMRIs • Phys. Rev. D (2021 - 2026)",
   summary:
     "Together, these four papers build a coherent picture of “wet EMRIs” (stellar-mass compact objects inspiraling into massive BHs inside AGN disks): (i) how AGN disks capture and circularize inclined objects and drive rapid inward migration, (ii) why this disk channel can dominate the spaceborne EMRI yield (including a mass-gap subclass), and (iii) what multi-messenger science becomes possible—QPE-like X-ray transients, precision SMBH mass/spin calibration, jet-geometry tests, and bright/dark standard-siren cosmology with percent-level \\(H_0\\) constraints.",
   details: [
@@ -55,7 +55,7 @@ window.PROJECTS = [
 
 {
   title: "Probing Spin-Induced Quadrupole Moments in Precessing Compact Binaries",
-  meta: "Waveform Model • Phys. Rev. D (2023,2024)",
+  meta: "Waveform Model • Phys. Rev. D (2023, 2024)",
   summary:
     "Develops and applies a precessing inspiral–merger–ringdown waveform that includes spin-induced quadrupole-moment effects in both the aligned-spin phase and the spin-precession dynamics, showing that precession can substantially improve measurability of the spin-induced quadrupole moment and help distinguish mass-gap objects and black-hole mimickers.",
   details: [
