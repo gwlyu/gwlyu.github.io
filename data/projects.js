@@ -1,17 +1,19 @@
 window.PROJECTS = [
 {
-  title: "Science Opportunities of Wet Extreme Mass-Ratio Inspirals",
-  meta: "Multi-messenger gravitational waves • Phys. Rev. D (2026)",
+  title: "Wet EMRIs: Formation Channels, Rates, Detectability, and Multi-messenger Science",
+  meta: "EMRIs • Phys. Rev. D (2021-2026)",
   summary:
-    "Reviews the multi-messenger science enabled by “wet EMRIs” (stellar-mass BHs inspiraling into SMBHs inside AGN disks), emphasizing population forecasts, transient EM counterparts (type II QPEs), precision SMBH parameter calibration, jet/disk geometry tests, and bright/dark-siren cosmology.",
+    "Together, these four papers build a coherent picture of “wet EMRIs” (stellar-mass compact objects inspiraling into massive BHs inside AGN disks): (i) how AGN disks capture and circularize inclined objects and drive rapid inward migration, (ii) why this disk channel can dominate the spaceborne EMRI yield (including a mass-gap subclass), and (iii) what multi-messenger science becomes possible—QPE-like X-ray transients, precision SMBH mass/spin calibration, jet-geometry tests, and bright/dark standard-siren cosmology with percent-level \\(H_0\\) constraints.",
   details: [
-    "Context: Wet EMRIs form via disk capture + migration in gas-rich AGN environments, unlike dry EMRIs formed by scattering in nuclear star clusters. Disk interactions tend to circularize and align orbits, while also opening EM counterpart channels.",
-    "Population & detectability: Re-estimates wet-EMRI rates using an updated (TDE-informed) SMBH mass function and a conservative constant AGN fraction \\(f_\\mathrm{AGN}=1\\%\\). Forecasts (Table I) give total rates \\(\\sim 4\\times10^2\\text{–}3.5\\times10^3\\,\\mathrm{yr}^{-1}\\) and LISA detection rates \\(\\sim 8\\text{–}100\\,\\mathrm{yr}^{-1}\\) (SNR \\(\\ge 20\\)), depending on disk model and disk lifetime; a nontrivial subset have resolvable host AGNs.",
-    "Waveforms & inference: Uses the Augmented Analytic Kludge (AAK) EMRI waveform model via Fast EMRI Waveforms (FEW) and performs Fisher-matrix forecasts in a 14D parameter space. Typical wet-EMRI measurements reach extremely high precision in SMBH mass/spin (order \\(10^{-4}\\text{–}10^{-6}\\) as highlighted in the introduction; see also the uncertainty histograms).",
-    "Transient EM counterparts (type II QPEs): Proposes QPE-like X-ray transients produced when an sBH crosses a warped AGN disk twice per orbit (distinct from TDE-associated “type I QPEs”). A decoupling radius \\(r_\\mathrm{dec}\\) is estimated by equating Lense–Thirring precession with disk-alignment rates; inside \\(r_\\mathrm{dec}\\) disk-crossing collisions can generate quasi-periodic flares with energy per collision scaling with the disk surface density \\(\\Sigma\\). The different \\(\\Sigma(r)\\) scalings in \\(\\alpha\\)- vs \\(\\beta\\)-disk models imply measurably different flare energetics, offering a disk-model diagnostic.",
-    "Calibrating EM measurements of SMBHs: If the host AGN is identified, wet EMRIs can calibrate traditional EM-based SMBH mass and spin estimators (e.g., virial BLR masses; X-ray reflection spectroscopy spins), because GW-derived SMBH parameters are far more precise than current EM constraints. The paper discusses detectability of the necessary X-ray fluxes and the need for deep exposures with next-gen missions (e.g., Athena/eXTP).",
-    "Testing jet-launching models: Outlines how joint GW (SMBH spin axis and EMRI orbital geometry) + EM (jet direction from radio) can test whether jets align with SMBH spin (BZ-like) versus disk angular momentum (BP-like), while noting practical limitations from growing uncertainty in the disk azimuth/precession angle when propagating the orbit to larger radii.",
-    "Cosmology with bright and dark sirens: Wet EMRIs can be bright sirens when the localization volume contains \\(\\lesssim 1\\) candidate AGN host (enabled primarily at \\(z\\lesssim 0.3\\)), and dark sirens otherwise via statistical association with AGN catalogs. Forecasts show \\(\\sim 1\\%\\) precision on \\(H_0\\) with \\(\\mathcal{O}(7)\\) bright sirens, and \\(\\sim 3\\%\\) precision from \\(\\mathcal{O}(30)\\) dark sirens in an example model; restricting hosts to AGNs (rather than all galaxies) substantially reduces candidate counts and tightens constraints."
+  "Channel mechanism (wet vs dry): Dry EMRIs form via loss-cone dynamics in nuclear star clusters (two-body scattering; EMRIs form when \\(t_{\\rm gw}\\lesssim t_J\\) ), typically entering the LISA band with nonzero eccentricity. Wet EMRIs form in AGNs: dynamical friction and disk-induced density waves damp inclination/eccentricity, capture the compact object into the disk, and drive inward migration (type-I for low masses; type-II if a gap opens) until GW emission dominates—yielding nearly circular, disk-aligned EMRIs in-band. This makes eccentricity (measurable down to \\(e\\sim10^{-5}\\) in forecasts) a practical channel discriminator.",
+  "Formation-rate uplift from disks (Pan+Lyu+Yang 2021, arXiv:2104.01208): Implements a Fokker–Planck framework where disk interactions add migration/damping advection and a capture sink/source term. Across plausible disk and duty-cycle assumptions, the disk channel can boost intrinsic EMRI production per active nucleus by orders of magnitude, motivating wet EMRIs as an important—potentially dominant—contributor to spaceborne detections when folded with a conservative AGN fraction \\(f_{\\rm AGN}=1\\%\\).",
+  "Mass-gap subclass + channel inference (Pan+Lyu+Yang 2022, arXiv:2112.10237): Proposes “mass-gap EMRIs” with a \\(\\sim(2.5\\text{–}5)\\,M_\\odot\\) compact object (MGO) inspiraling into a massive BH. In the dry channel, mass segregation strongly suppresses MGO EMRIs relative to stellar-mass BH EMRIs; in the wet channel, the suppression is only ∼ the mass-ratio scaling because both disk capture and migration speeds scale roughly with compact-object mass. Consequently, the wet channel is far more promising for observable mass-gap EMRIs. (Non-)detections and especially the detected ratio of MGO-to-sBH EMRIs can probe supernova remnant demographics (rapid vs delayed explosions) and constrain exotic origins such as primordial black holes.",
+  "Detection-rate forecasts for wet EMRIs:\n  • Mass-gap EMRIs paper (arXiv:2112.10237) gives LISA-detectable wet rates for MGOs of order \\(\\mathcal{O}(10\\text{–}10^2)\\times(f_{\\rm AGN}/1\\%)\\,\\mathrm{yr}^{-1}\\) in the physically motivated SMBH mass function case (their Table II), versus \\(\\lesssim 1\\,\\mathrm{yr}^{-1}\\) for dry mass-gap EMRIs.\n  • Science-opportunities paper (arXiv:2501.03252) updates *sBH* wet-EMRI rates using a TDE-informed (nearly log-flat) SMBH mass function and \\(f_{\\rm AGN}=1\\%\\): totals ∼ 390–3500/yr and LISA detections ∼ 8–100/yr depending on disk model and \\(T_{\\rm disk}=10^6\\text{–}10^8\\,\\mathrm{yr}\\) (their Table I), with a small but nontrivial subset having resolvable hosts (bright-siren candidates).",
+  "Waveforms & parameter inference backbone: The science-opportunities study (arXiv:2501.03252) evaluates detectability and localization using the AAK EMRI waveform model (via Fast EMRI Waveforms, FEW) and Fisher-matrix forecasts in a 14D parameter space. It emphasizes extremely precise GW measurements of SMBH mass and spin (framed as order \\(10^{-4}\\text{–}10^{-6}\\) in the paper), enabling downstream calibration and multi-messenger tests when the host AGN can be identified.",
+  "Transient EM counterparts—type II QPEs (arXiv:2501.03252): Proposes QPE-like X-ray flares produced when an sBH crosses a *warped* AGN disk twice per orbit (distinct from TDE-associated “type I QPEs”). A decoupling radius \\(r_{\\rm dec}\\sim(410\\text{–}430)M_\\bullet\\) is estimated by equating Lense–Thirring precession with maximal disk-alignment rate; inside \\(r_{\\rm dec}\\) the orbit can leave the disk and produce repeated disk-crossing shocks. Flare energetics scale with disk surface density \\(\\Sigma\\), and the different \\(\\Sigma(r)\\) scalings in \\(\\alpha\\)- vs \\(\\beta\\)-disk models imply measurably different flare strengths—turning type II QPEs into a disk-model diagnostic if observed jointly (or with GW-informed periodicity/orbit constraints).",
+  "Calibrating EM SMBH mass/spin measurements (arXiv:2501.03252): If a host AGN is identified, GW-derived SMBH parameters can calibrate EM estimators (e.g., virial BLR masses; X-ray reflection spins). The paper notes practical X-ray flux limitations: spin-calibration-quality reflection spectroscopy likely requires very nearby hosts (roughly \\(z\\lesssim0.1\\)) and deep exposures with next-generation missions (Athena/eXTP).",
+  "Jet/disk geometry tests (arXiv:2501.03252): Joint GW+EM can compare the SMBH spin axis (from GW), disk orientation (inferred by tracing the orbit back toward the decoupling region), and jet direction (from radio) to test jet-launching models. Event-by-event constraints are limited mainly by growing uncertainty in the disk azimuth/precession angle at larger radii, but population-level correlations remain promising.",
+  "Cosmology with bright & dark sirens (arXiv:2501.03252): Because wet EMRIs are associated with AGNs, restricting host candidates to AGNs (\\(f_{\\rm AGN}\\sim1\\%\\)) reduces localization-volume host counts. The paper forecasts (i) \\(\\sim1\\%\\) \\(H_0\\) precision with \\(\\mathcal{O}(7)\\) bright sirens (uniquely identified hosts, primarily at \\(z\\lesssim0.3\\)) and (ii) \\(\\sim3\\%\\) with \\(\\mathcal{O}(30)\\) dark sirens (statistical association with AGN catalogs) in an example model."
   ],
   figures: [
     {
@@ -20,7 +22,6 @@ window.PROJECTS = [
       caption: "The table presents total EMRI rates, LISA detection rates (with \\(\\mathrm{SNR} \\ge 20\\)), and rates for which the host AGN galaxy is resolvable.",
       layout: "below"  
     },
-
     {
       src: "data/images/wet_EMRI_bright_dH_H_Num.png",
       alt: "Relative 1-\\(\\sigma\\) uncertainty on \\(H_0\\) versus number of bright wet-EMRI sirens for representative disk models.",
@@ -31,12 +32,21 @@ window.PROJECTS = [
   tags: [
     "Wet EMRIs",
     "AGN Disks",
-    "Multi-messenger Astronomy",
-    "Quasi-Periodic Eruptions (QPEs)",
-    "Standard Sirens"
+    "Formation Channels (wet vs dry)",
+    "Fokker–Planck Population Modeling",
+    "Mass-gap Objects",
+    "Quasi-Periodic Eruptions (Type II QPEs)",
+    "SMBH Mass/Spin Calibration",
+    "Jets (BZ vs BP)",
+    "Standard Sirens (Bright/Dark)",
+    "LISA / TianQin / Taiji"
   ],
   links: [
-    { label: "Paper (arXiv:2501.03252)", href: "https://arxiv.org/abs/2501.03252" },
+    { label: "Formation Rate of Extreme Mass Ratio Inspirals in Active Galactic Nuclei (arXiv:2101.09146)", href: "https://arxiv.org/abs/2101.09146" },
+    { label: "Wet Extreme Mass Ratio Inspirals May Be More Common For Spaceborne Gravitational Wave Detection (arXiv:2104.01208)", href: "https://arxiv.org/abs/2104.01208" },
+    { label: "Mass-gap extreme mass ratio inspirals (arXiv:2112.10237)", href: "https://arxiv.org/abs/2112.10237" },
+    { label: "Science Opportunities of Wet Extreme Mass-Ratio Inspirals (arXiv:2501.03252)", href: "https://arxiv.org/abs/2501.03252" },
+    { label: "Probing Formation Channels of Extreme Mass-Ratio Inspirals (arXiv:2509.00469)", href: "https://arxiv.org/abs/2509.00469" },  
     { label: "Code on GitHub", href: "https://github.com/gwlyu" }
   ]
 },
@@ -45,7 +55,7 @@ window.PROJECTS = [
 
 {
   title: "Probing Spin-Induced Quadrupole Moments in Precessing Compact Binaries",
-  meta: "Waveform model • Phys. Rev. D (2024)",
+  meta: "Waveform Model • Phys. Rev. D (2023,2024)",
   summary:
     "Develops and applies a precessing inspiral–merger–ringdown waveform that includes spin-induced quadrupole-moment effects in both the aligned-spin phase and the spin-precession dynamics, showing that precession can substantially improve measurability of the spin-induced quadrupole moment and help distinguish mass-gap objects and black-hole mimickers.",
   details: [
@@ -79,7 +89,8 @@ window.PROJECTS = [
     "Black Hole Mimickers",
   ],
   links: [
-    { label: "Paper (arXiv:2308.09032)", href: "https://arxiv.org/abs/2308.09032" },
+    { label: "Efficient fully precessing gravitational waveforms for binaries with neutron stars (arXiv:2308.09032)", href: "https://arxiv.org/abs/2212.04657" },           
+    { label: "Probing Spin-Induced Quadrupole Moments in Precessing Compact Binaries (arXiv:2308.09032)", href: "https://arxiv.org/abs/2308.09032" },
     { label: "Code on GitHub", href: "https://github.com/GWLyu/SIQM" },
   ]
 },
@@ -89,7 +100,7 @@ window.PROJECTS = [
 
 {
   title: "Constraints on Einstein–dilaton Gauss–Bonnet Gravity from NSBH Gravitational-Wave Events",
-  meta: "Modified theory of gravity • Phys. Rev. D (2022)",
+  meta: "Modified Theory of Gravity • Phys. Rev. D (2022)",
   summary:
     "Uses neutron star–black hole gravitational-wave events to bound the EdGB coupling via post-Newtonian phase corrections and Bayesian inference.",
   details: [
@@ -121,37 +132,6 @@ window.PROJECTS = [
 
 
 
-
-
-  {
-    title: "Project A: Efficient Model Training",
-    meta: "2024 — Present",
-    summary: "Optimization methods for training and evaluation.",
-    details: [
-      "Goal: Reduce training cost while keeping accuracy.",
-      "My role: algorithm design + implementation + experiments.",
-      "Output: manuscript in preparation; internal benchmark suite."
-    ],
-    figures: [
-      {
-        src: "data/images/avatar.jpg",
-        alt: "Overview diagram of Project A",
-        caption: "Overview of the pipeline."
-      },
-      {
-        src: "data/images/avatar.jpg",
-        alt: "Results plot for Project A",
-        caption: "Main benchmark results."
-      }
-    ],
-    tags: ["ML", "Optimization", "Systems"],
-    links: [
-    { label: "Paper (arXiv:2201.02543)", href: "https://arxiv.org/abs/2201.02543" },
-    { label: "Code", href: "https://github.com/gwlyu"},
-      { label: "Paper (PDF)", href: "#" },
-      { label: "Code", href: "#" }
-    ]
-  },
 
 
 
