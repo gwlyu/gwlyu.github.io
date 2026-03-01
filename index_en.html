@@ -895,6 +895,7 @@
 
       // (Optional but recommended) always show summary first if present
       if (entry.summary) {
+        parts.push(`<p class="details-heading"><strong>Summary:</strong></p>`);                       
         //parts.push(`<p>${escapeHtml(entry.summary)}</p>`);
         parts.push(`<div class="md">${mdBlockToSafeHtml(entry.summary)}</div>`);
       }
@@ -907,6 +908,7 @@
           : entry.details_md;
       // Details (FULL markdown)
       if (detailsMd && detailsMd.trim()) {
+        parts.push(`<p class="details-heading"><strong>Details:</strong></p>`);                                                                        
         parts.push(`<div class="md">${mdBlockToSafeHtml(detailsMd)}</div>`);
       } else if (Array.isArray(entry.details) && entry.details.length) {
         // Fallback: old array-of-lines
