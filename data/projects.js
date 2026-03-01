@@ -96,62 +96,102 @@ window.PROJECTS = [
 },
 
 
+
 {
-  title: "Constraining Beyond-GR Physics with Real GW Detections",
-  meta: "Tests of Gravity • Phys. Rev. D (2022, 2025)",
-  summary: "Both papers implement the same core pipeline: derive a theory-specific correction to compact-binary dynamics/waveform (most importantly an accumulated inspiral phase shift at a known PN order), embed it into a GR waveform model (ppE-style or explicit PN phasing), then use Bayesian parameter estimation on real LIGO/Virgo strain data to place credible upper bounds on the new coupling/parameter—checked for self-consistency (e.g., small-coupling validity) and optionally strengthened via multi-event combination.",
-  details: [
-    "What gets constrained: a single beyond-GR parameter that controls a specific waveform deviation measurable by matched filtering—\\(\\sqrt{\\alpha_{\\mathrm{GB}}}\\) for Einstein–dilaton Gauss–Bonnet (EdGB) gravity, and \\(\\sqrt{\\Lambda}\\) for noncommutative spacetime effects.",
-    "Key observable: an accumulated dephasing \\(\\delta\\Psi(f)\\) relative to GR. In EdGB, the leading effect is a \\(-1\\)PN dipole-radiation phase correction (strong leverage at low frequency). In noncommutative gravity, the leading effect enters at \\(2\\)PN order and is mapped into ppE phase parameters.",
-    "Waveform embedding strategy (EdGB): add PN phase corrections (leading \\(-1\\)PN, extended up to \\(2\\)PN via mapping from scalar–tensor results) on top of a GR inspiral–merger–ringdown baseline (IMRPhenomXPHM). To remain within PN validity, impose an inspiral high-frequency cutoff \\(f_\\mathrm{high} = 0.018/M\\).",
-    "Waveform embedding strategy (Noncommutative): construct a ppE waveform using IMRPhenomXHM and include higher harmonics \\((2,1), (3,3), (3,2), (4,4)\\) beyond the dominant \\((2,2)\\). Extend beyond inspiral using a merger–ringdown \\(C_0\\) continuation so the template remains usable where much of the SNR accumulates.",
-    "Event selection is theory-driven: EdGB bounds strengthen for lower total mass and favorable mass ratio (larger relative effect \\(\\propto \\alpha_{\\mathrm{GB}}^2/M^4\\) and scalar-charge contrast), motivating NSBH events GW200105 and GW200115 and considering GW190814 under both NSBH/BBH interpretations. Noncommutative bounds strengthen for extreme symmetric mass ratio (phase coefficient scales with \\(\\eta\\)), motivating GW190814 in addition to GW150914.",
-    "Inference on real data: both papers use Bayesian parameter estimation (MCMC / posterior sampling) and report one-sided credible upper limits on the non-GR parameter; EdGB additionally cross-checks with an independent Fisher-matrix analysis for consistency.",
-    "Robustness/validity is part of the result: EdGB constraints are explicitly checked to satisfy a small-coupling criterion (effective-field-theory regime). Noncommutative analysis validates that GR parameters inferred under the non-GR model remain consistent with GR-only inference, indicating the beyond-GR parameter is not simply absorbing mismodeling.",
-    "Headline constraints: EdGB finds \\(\\sqrt{\\alpha_{\\mathrm{GB}}} \\lesssim 1.33\\,\\mathrm{km}\\) (90% credible; GW200115) and a stacked bound \\(\\sqrt{\\alpha_{\\mathrm{GB}}} \\lesssim 1.18\\,\\mathrm{km}\\) (combining NSBHs + selected BBHs). Including higher-PN terms tightens bounds by \\(14.5\\%\\) (GW200105) and \\(6.9\\%\\) (GW200115). Noncommutative spacetime finds \\(\\sqrt{\\Lambda} < 0.68\\) (GW150914, 95th percentile) and \\(\\sqrt{\\Lambda} < 0.46\\) (GW190814, 95th percentile).",
-    "Practical takeaway: constraint strength is governed by (i) PN order (earlier/negative PN often dominates), (ii) how the correction scales with \\((M, q, \\eta, \\chi)\\), (iii) waveform systematics control (inspiral cutoff vs controlled merger–ringdown extension; inclusion of higher harmonics), and (iv) self-consistency checks (small-coupling/EFT, cross-method validation, and parameter robustness).",
+  "title": "Test Beyond-GR/SM Physics with Real GW Detections",
+  "meta": "New-Physics • Phys. Rev. D (2022, 2025), Phys.Rev.Lett. (2021) ",
+  "summary": "These three papers share a common strategy for testing fundamental physics with gravitational waves: start from a concrete beyond-GR / beyond-Standard-Model theory that predicts a specific correction to compact-binary dynamics (typically an accumulated phase shift entering at a known PN order), embed that correction into a GR waveform family (explicit PN phasing or ppE-style), and use Bayesian inference on real LIGO/Virgo data to constrain the underlying theory parameter(s). In all three cases, the data are consistent with GR (or with the baseline GR+astrophysics model), yielding upper limits that improve upon earlier GW-only bounds in their respective frameworks.",
+  "details": [
+    "Axionlike particles (GW170817; nuclear-coupled ALPs; inspiral-only deformation):",
+    "  - Mechanism: finite-density effects in neutron stars can trigger an in-medium axion-field transition, giving each NS an effective axion “charge.” Charged NSs feel an additional Yukawa interaction and can emit axion radiation, both of which modify the orbital evolution and GW phase.",
+    "  - Waveform implementation: modify the TaylorF2 inspiral phase as \\(\\Psi(f) = \\Psi_{\\mathrm{GR}}(f) + \\Psi_a(f)\\), keeping the leading axion-induced correction (consistent with the null result implying small effective charges).",
+    "  - Parameters constrained: axion mass \\(m_a\\) (or \\(\\lambda_a = 1/m_a\\)) and an effective force-strength \\(\\gamma_a \\equiv \\frac{Q_1 Q_2}{4\\pi G M_1 M_2}\\) that encodes the product of charges and can be attractive or repulsive depending on relative axion-field signs.",
+    "  - Inference choices: Bayesian PE on GW170817 public data (Hanford + Livingston emphasized; Virgo low SNR), with EM-informed sky position/distance to reduce degeneracies; EOS-insensitive relations used to connect tidal information and charge ratio assumptions.",
+    "  - Headline bound (theory-space translation): for very light axions (roughly \\(m_a \\lesssim 10^{-11}\\,\\mathrm{eV}\\)), GW170817 excludes a band in \\((m_a, f_a)\\), approximately \\(1.6\\times 10^{16}\\,\\mathrm{GeV} \\lesssim f_a \\lesssim 10^{18}\\,\\mathrm{GeV}\\) at about 3\\(\\sigma\\) (with constraints switching off for \\(f_a\\gtrsim 10^{18}\\,\\mathrm{GeV}\\) where NSs do not source the axion profile).",
+    "",
+    "Einstein–dilaton–Gauss–Bonnet gravity (NSBH events; leading \\(-1\\)PN dipole radiation):",
+    "  - Mechanism: in EdGB (string-motivated), compact objects can acquire scalar charges, enabling dipole scalar radiation. This enters the inspiral phasing at \\(-1\\)PN order, giving strong leverage at low frequencies.",
+    "  - Event selection: focuses on NSBH events GW200105 and GW200115 (and considers GW190814, which is compatible with either BBH or NSBH interpretations).",
+    "  - Analysis method: Bayesian MCMC parameter estimation with the leading PN correction; bound consistency checked against an independent Fisher-matrix estimate.",
+    "  - Headline constraints: 90% credible upper bound \\(\\sqrt{\\alpha_{\\mathrm{GB}}} \\lesssim 1.33\\,\\mathrm{km}\\); a stacked bound \\(\\sqrt{\\alpha_{\\mathrm{GB}}} \\lesssim 1.18\\,\\mathrm{km}\\) obtained by combining GW200105, GW200115, GW190814, and selected BBH events.",
+    "  - Higher-PN robustness: waveform phase corrections mapped up to 2PN order; including these improves bounds by 14.5% (GW200105) and 6.9% (GW200115), indicating that subleading terms can matter at the current sensitivity level.",
+    "",
+    "Noncommutative spacetime (GW150914 & GW190814; leading 2PN correction in ppE):",
+    "  - Mechanism: noncommutative gravity induces a leading compact-binary GW phase correction at 2PN order controlled by \\(\\Lambda \\equiv |\\theta^{0i}|/(l_P t_P)\\).",
+    "  - Waveform implementation: construct a ppE-style deformation built on IMRPhenomXHM, explicitly including higher-order modes \\((2,1), (3,3), (3,2), (4,4)\\) in addition to \\((2,2)\\).",
+    "  - Headline constraints (95th percentile): reanalysis of GW150914 yields \\(\\sqrt{\\Lambda} < 0.68\\), and GW190814 yields \\(\\sqrt{\\Lambda} < 0.46\\), reported as the strongest GW-observation constraint on noncommutative gravity to date in that work.",
+    "",
+    "Cross-cutting takeaway across all three (in the requested order):",
+    "  - Each test is “theory-to-waveform-to-posterior”: derive \\(\\delta\\Psi(f)\\) at a specific PN order, embed into a standard GW template family, and constrain a small set of beyond-GR / new-physics parameters with Bayesian inference on real events.",
+    "  - Constraint strength is controlled by (i) PN order (e.g., \\(-1\\)PN dipole radiation is typically very constraining), (ii) event properties (masses, mass ratio, harmonics, SNR distribution over frequency), and (iii) waveform systematics handling (inspiral cutoffs vs controlled IMR extensions, inclusion of higher harmonics, and theory-validity/small-coupling checks)."
   ],
-  figures: [
+  "figures": [
+    {
+      "src": "data/images/GW170817_axion_constraints_fa_ma.png",
+      "alt": "Constraint plot in the (m_a, f_a) plane showing the region excluded by GW170817 compared to other bounds.",
+      "caption": "Axions (GW170817): excluded region in \\((m_a, f_a)\\) from the axion-induced inspiral phasing test; complementary to other astrophysical and cosmological bounds.",
+    },
+    {
+      "src": "data/images/GW170817_gammaa_posteriors_vs_lambda.png",
+      "alt": "Posteriors for gamma_a as a function of axion Compton wavelength lambda_a with 3-sigma widths.",
+      "caption": "Axions (GW170817): posteriors on the effective axion force-strength \\(\\gamma_a\\) across sampled \\(\\lambda_a\\), illustrating where the effect is Yukawa-suppressed or degenerate with intrinsic binary parameters.",
+      layout: "below"  
+    },
     {
       "src": "data/images/EdGB_alpha_km_combined.jpg",
       "alt": "Posterior distributions and 90% upper limits on sqrt(alpha_GB) from NSBH events and combined analyses.",
-      "caption": "EdGB: Posterior probability distributions for \\(\\sqrt{\\alpha_{\\mathrm{GB}}}\\) from selected GW events, with 90% credible upper limits indicating consistency with GR when including the leading \\(-1\\)PN phase correction."
+      "caption": "EdGB (NSBH events): posteriors for \\(\\sqrt{\\alpha_{\\mathrm{GB}}}\\) and 90% upper limits from GW200105/GW200115 (and combinations), consistent with GR."
     },
     {
       "src": "data/images/EdGB_alpha_km_high.jpg",
       "alt": "Bounds on sqrt(alpha_GB) comparing leading (−1PN) vs higher-PN (up to 2PN) phase corrections.",
-      "caption": "EdGB: Comparison of posteriors using only the leading \\(-1\\)PN term versus including higher PN corrections up to \\(2\\)PN, showing tightening of the 90% upper bounds by \\(14.5\\%\\) (GW200105) and \\(6.9\\%\\) (GW200115)."
+      "caption": "EdGB: impact of including higher-PN corrections (mapped up to 2PN) relative to the leading \\(-1\\)PN term, tightening bounds at the \\(\\mathcal{O}(10\\%)\\) level for individual events."
     },
     {
       "src": "data/images/NC_posteriors_corner_GW150914_GW190814.png",
-      "alt": "Corner/posterior plots showing GR vs noncommutative posteriors and constraints on sqrt(Lambda) for GW150914 and GW190814.",
-      "caption": "Noncommutative: Posterior distributions comparing GR-only inference to the noncommutative model; \\(\\sqrt{\\Lambda}\\) is constrained while GR parameters remain consistent between analyses, supporting robustness of the beyond-GR bound.",
+      "alt": "Posterior/corner plot showing constraints on sqrt(Lambda) for GW150914 and GW190814 under a noncommutative ppE waveform.",
+      "caption": "Noncommutative spacetime: posterior constraints on \\(\\sqrt{\\Lambda}\\) from GW150914 and GW190814 using an IMRPhenomXHM-based ppE model with higher harmonics.",
       layout: "below"  
     }
   ],
-  tags: [
+  "tag": [
     "Tests of General Relativity",
-    "Modified Gravity",
-    "Beyond-GR Waveforms",
-    "Post-Newtonian Phasing",
-    "Bayesian Inference",
-    "Higher Harmonics",
+    "Beyond-GR / New Fields",
+    "Axionlike Particles",
+    "Einstein–dilaton–Gauss–Bonnet (EdGB)",
+    "Noncommutative Spacetime",
+    "Parameterized Post-Einsteinian (ppE)",
+    "Bayesian Parameter Estimation",
+    "LIGO/Virgo Events (GW170817, GW200105, GW200115, GW150914, GW190814)"
   ],
-  links: [
+  "links": [
     {
-      "label": "Constraints on Einstein-dilaton-Gauss-Bonnet gravity from Black Hole-Neutron Star Gravitational Wave Events (arXiv:2201.02543)",
+      "label": "Axions from GW170817 (arXiv:2105.13963) — First Constraints on Nuclear-Coupled Axionlike Particles from GW170817",
+      "href": "https://arxiv.org/abs/2105.13963"
+    },
+    {
+      "label": "EdGB from NSBH events (arXiv:2201.02543) — Constraints on Einstein-dilaton-Gauss-Bonnet gravity from BH–NS GW events",
       "href": "https://arxiv.org/abs/2201.02543"
     },
     {
-      "label": "Constraining noncommutative spacetime with GW150914 and GW190814 (arXiv:2507.23442)",
+      "label": "Noncommutative spacetime (arXiv:2507.23442) — Constraining noncommutative spacetime with GW150914 and GW190814",
       "href": "https://arxiv.org/abs/2507.23442"
     },
     {
       "label": "Author GitHub (gwlyu)",
       "href": "https://github.com/gwlyu"
+    },
+    {
+      "label": "GW Open Science Center (data access)",
+      "href": "https://www.gw-openscience.org/"
     }
   ]
 }
+
+
+
+
+
 
 
 
