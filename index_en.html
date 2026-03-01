@@ -923,7 +923,7 @@
 
 
       if (Array.isArray(entry.links) && entry.links.length){
-        parts.push(`<p><strong>Links:</strong></p>`);
+        parts.push(`<p class="details-heading"><strong>Links:</strong></p>`);                       
         parts.push("<ul>");
         for (const l of entry.links){
           parts.push(`<li><a class="entry-link" href="${escapeAttr(l.href)}" target="_blank" rel="noreferrer">${escapeHtml(l.label)}</a></li>`);
