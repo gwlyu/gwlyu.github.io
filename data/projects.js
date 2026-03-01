@@ -99,7 +99,7 @@ window.PROJECTS = [
 
 {
   "title": "Test Beyond-GR/SM Physics with Real GW Detections",
-  "meta": "New-Physics • Phys. Rev. D (2022, 2025), Phys.Rev.Lett. (2021) ",
+  "meta": "New-Physics • Phys.Rev.Lett. (2021), Phys. Rev. D (2022, 2025)",
   "summary": "These three papers share a common strategy for testing fundamental physics with gravitational waves: start from a concrete beyond-GR / beyond-Standard-Model theory that predicts a specific correction to compact-binary dynamics (typically an accumulated phase shift entering at a known PN order), embed that correction into a GR waveform family (explicit PN phasing or ppE-style), and use Bayesian inference on real LIGO/Virgo data to constrain the underlying theory parameter(s). In all three cases, the data are consistent with GR (or with the baseline GR+astrophysics model), yielding upper limits that improve upon earlier GW-only bounds in their respective frameworks.",
   "details": [
     "Axionlike particles (GW170817; nuclear-coupled ALPs; inspiral-only deformation):",
