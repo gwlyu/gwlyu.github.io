@@ -24,7 +24,6 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.11/dist/purify.min.js"></script>
 
-
   <style>
     :root{
       --bg:#ffffff;
@@ -340,14 +339,14 @@
       overflow: hidden;
       background: color-mix(in srgb, var(--card) 92%, transparent);
     
-      /* Side-by-side: left image, right caption */
+     /* Side-by-side: left image, right caption */
       display: flex;
       gap: 12px;
       align-items: center;
       padding: 12px;
     }
-
-    /* The link is ONLY the image area */                                                                   
+    
+    /* The link is ONLY the image area */                                  
     .figure-link{
       flex: 0 0 60%;
       width: 60%;
@@ -367,7 +366,7 @@
       height: auto;
       display: block;
       border-radius: 10px;
-    } 
+    }
 
     /* caption takes remaining space on the right */
     .figure figcaption{
@@ -378,7 +377,6 @@
       font-size: 18px;
       line-height: 1.6;
     }
-    
     /* Mobile: stack vertically */
     @media (max-width: 720px){
       .figure a{
@@ -401,8 +399,9 @@
     .entry-link:focus-visible{
       outline: 2px solid currentColor; outline-offset: 2px; }
 
+    /* caption below the figure */
     .figure--below{ flex-direction: column; align-items: center; }
-    .figure--below .figure-link{ width: 90%; flex: none; }                                                                                           
+    .figure--below .figure-link{ width: 90%; flex: none; }
 
     .dialog{
       position:relative;
@@ -456,7 +455,7 @@
       font-family: var(--sans);
     }
     .dialog .content p{ margin: 0 0 10px; }
-    /* NEW: horizontal line above the "Details" heading in the modal */                                                   
+    /* NEW: horizontal line above the "Details" heading in the modal */
     .dialog .content .details-heading{
       margin: 0 0 10px;              /* keep same spacing as other <p> */
       padding-top: 12px;             /* gap between line and the word "Details" */
@@ -526,10 +525,10 @@
       </div>
 
       <h1 class="name">
-        <span class="name-rest">吕振伟</span>
-        <a class="name-link" href="index_en.html" lang="zh">(Zhenwei Lyu)</a>
+        <span class="name-rest">Zhenwei Lyu</span>                                                                               
+        <a class="name-link" href="https://faculty.dlut.edu.cn/lyu/zh_CN/index.htm" lang="zh">(吕振伟)</a>
       </h1>      
-      <div class="subname">Dalian University of Technology · Assistant Professor · Gravitational Waves </div>
+      <div class="subname"> Dalian University of Technology · Assistant Professor · Gravitational Waves </div>
 
       <!-- Icons: ONLY three (Email, Github, INSPIRE) -->
       <div class="icons" aria-label="Links">
@@ -543,9 +542,8 @@
           Email
         </a> -->
 
-        <a class="iconlink" href="https://faculty.dlut.edu.cn/lyu/zh_CN/index.htm" target="_blank" rel="noreferrer" aria-label="University Homepage">
+        <!-- <a class="iconlink" href="https://faculty.dlut.edu.cn/lyu/zh_CN/index.htm" target="_blank" rel="noreferrer" aria-label="University Homepage">
           <span class="icon" aria-hidden="true">
-            <!-- Simple 'building' icon for university -->
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 22V10l9-7 9 7v12" />
               <path d="M9 22V12h6v10" />
@@ -554,7 +552,7 @@
             </svg>
           </span>
           DUT
-        </a>
+        </a> -->
         
         <a class="iconlink" href="https://github.com/gwlyu" target="_blank" rel="noreferrer" aria-label="GitHub">
           <span class="icon" aria-hidden="true">
@@ -587,6 +585,19 @@
           </span>
           INSPIRE
         </a>
+
+        <a class="iconlink" href="https://orcid.org/0000-0002-0151-3794" target="_blank" rel="noreferrer" aria-label="ORCID">
+          <span class="icon" aria-hidden="true">
+            <!-- Simple ORCID-style icon -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"></circle>
+              <circle cx="8" cy="8" r="1" fill="currentColor" stroke="none"></circle>
+              <path d="M8 11v5"></path>
+              <path d="M11 16v-5h2.2a2.5 2.5 0 1 1 0 5H11z"></path>
+            </svg>
+          </span>
+          ORCID
+        </a>
       </div>
     </header>
 
@@ -608,7 +619,7 @@
       <div class="rule"></div>
       <div class="prose">
         <p>
-         My research centers on the analysis of gravitational waves, utilizing advanced techniques in waveform modeling and parameter estimation to extract and interpret the complex physical information embedded within these signals.
+         My research focuses on the analysis of gravitational waves, utilizing advanced techniques in waveform modeling and parameter estimation to extract and interpret the complex physical information embedded within these signals.
         </p>
         <p class="muted">
          <!-- I’m currently focusing on efficient training and evaluation. -->
@@ -648,7 +659,7 @@
     </section>
 
     <footer>
-      © <span id="year"></span> Zhenwei Lyu · Built with plain HTML/CSS/JS                                                       
+      © <span id="year"></span> Zhenwei Lyu · Built with plain HTML/CSS/JS · Assisted by LLMs 
     </footer>
   </main>
 
@@ -680,7 +691,7 @@
   <script src="data/projects.js"></script>
   <!-- many weekly files -->
   <script src="data/logs/2026.js"></script>
-  <script src="data/logs/2025.js"></script>                                                                                                             
+  <script src="data/logs/2025.js" charset="utf-8"></script>                                                                                                             
   <script src="data/notes/2026.js"></script>                                                                                                                                                                                                                  
 
 
@@ -692,8 +703,8 @@
         title: "Employment",
         meta: "2022 — Present",
         details: [
-          " Assistant Professor, Dalian University of Technology, 2024-Present",
-          " Boya Postdoctoral Fellow, Peking University, 2022-2024",
+          "Assistant Professor, Dalian University of Technology, 2024-Present",
+          "Boya Postdoctoral Fellow, Peking University,  2022-2024",
         ],
       },
       {
@@ -750,7 +761,7 @@
           e.preventDefault();
           open();
         }
-      });                                                                                                                           
+      });
 
       return div;
     }
@@ -803,7 +814,6 @@
         </figure>
       `;
     }
-    
 
     function typesetLatex(root = document.body) {
       if (window.MathJax && MathJax.typesetPromise) {
@@ -910,7 +920,7 @@
           : entry.details_md;
       // Details (FULL markdown)
       if (detailsMd && detailsMd.trim()) {
-        parts.push(`<p class="details-heading"><strong>Details:</strong></p>`);      
+        parts.push(`<p class="details-heading"><strong>Details:</strong></p>`);                                                                        
         parts.push(`<div class="md">${mdBlockToSafeHtml(detailsMd)}</div>`);
       } else if (Array.isArray(entry.details) && entry.details.length) {
         // Fallback: old array-of-lines
