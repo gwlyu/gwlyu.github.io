@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Zhenwei Lyu — Personal Homepage</title>
+  <meta name="description" content="Personal homepage of Zhenwei Lyu: research interests, group directions, logs and notes." />
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["\\(", "\\)"]],
+        displayMath: [["\\[", "\\]"]],
+      },
+      options: {
+        skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"],
+      },
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.11/dist/purify.min.js"></script>
+
+  <style>
+    :root{
+      --bg:#f8f8ff;
+      --bg-soft:#fbfaff;
+      --card:#fefeff;
+      --text:#0f172a;
+      --muted:#475569;
+      --faint:#64748b;
+      --border:#e2e8f0;
+      --accent:#2563eb;
+      --accent-soft:rgba(37,99,235,.08);
+      --shadow:0 10px 30px rgba(15,23,42,.08);
+      --ring:0 0 0 4px rgba(37,99,235,.14);
+      --radius:18px;
+      --maxw:1080px;
+      --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      --serif:ui-serif,Georgia,"Times New Roman",Times,serif;
+      --lh:1.75;
+    }
+
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0b1220;
+        --bg-soft:#0f172a;
+        --card:#111827;
+        --text:#e5e7eb;
+        --muted:#cbd5e1;
+        --faint:#94a3b8;
+        --border:rgba(148,163,184,.22);
+        --accent:#60a5fa;
+        --accent-soft:rgba(96,165,250,.10);
+        --shadow:0 16px 40px rgba(0,0,0,.35);
+        --ring:0 0 0 4px rgba(96,165,250,.18);
+      }
+    }
+
+    *{box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 500px at 50% -10%, rgba(37,99,235,.08), transparent 55%),
+        radial-gradient(700px 400px at 100% 0%, rgba(37,99,235,.05), transparent 55%),
+        var(--bg);
+      line-height:var(--lh);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+
+    a{color:var(--accent); text-decoration:none;}
+    a:hover{text-decoration:none;}
+
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px 80px;}
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:30;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+      padding:10px 0 14px;
+      backdrop-filter:blur(12px);
+      background:color-mix(in srgb, var(--bg) 80%, transparent);
+      border-bottom:1px solid var(--border);
+    }
+    .btn{
+      height:44px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:color-mix(in srgb, var(--card) 92%, transparent);
+      color:var(--muted);
+      font-weight:700;
+      font-size:1.12rem;
+      cursor:pointer;
+      transition:all 140ms ease;
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      border-color:color-mix(in srgb, var(--accent) 35%, var(--border));
+      background:color-mix(in srgb, var(--accent) 8%, var(--card));
+      color:var(--text);
+    }
+    .btn[aria-current="page"]{
+      color:var(--text);
+      border-color:color-mix(in srgb, var(--accent) 45%, var(--border));
+      background:color-mix(in srgb, var(--accent) 10%, var(--card));
+      box-shadow:var(--ring);
+    }
+
+    .hero{
+      padding:34px 0 10px;
+    }
+    .hero-inner{
+      display:grid;
+      grid-template-columns:210px minmax(0,1fr);
+      gap:52px;
+      align-items:center;
+      padding-left: 4px;
+    }
+    .hero-text{min-width:0;}
+    .photo{
+      width:210px;
+      height:210px;
+      margin-left: 6px;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:linear-gradient(135deg, rgba(37,99,235,.18), rgba(124,58,237,.10));
+      box-shadow:var(--shadow);
+    }
+    .photo img{width:100%; height:100%; object-fit:cover; display:block;}
+    .photo .placeholder{padding:16px; color:var(--muted); font-size:13px;}
+
+    .hero-card{
+      background:color-mix(in srgb, var(--bg-soft) 94%, transparent);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:26px 28px;
+      box-shadow:var(--shadow);
+    }
+    h1{
+      margin:0;
+      font-size:clamp(30px, 4vw, 42px);
+      line-height:1.08;
+      letter-spacing:-0.03em;
+    }
+    .name-link,.name-link:visited{color:color-mix(in srgb, var(--accent) 72%, var(--text));}
+    .name-link:hover,.name-link:focus-visible{color:var(--text);}
+    .subname{margin-top:8px; color:var(--muted); font-weight:600; font-size:1.03rem;}
+    .intro{margin:16px 0 0; max-width:68ch; color:var(--muted); font-size:1.08rem;}
+
+    .profile-facts{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+      margin-top:18px;
+      width:min(100%, 950px);
+      max-width:950px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .fact-card{
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:12px 14px;
+      background:color-mix(in srgb, var(--card) 94%, transparent);
+    }
+    .fact-card h3{
+      margin:0 0 8px;
+      font-size:1.02rem;
+      letter-spacing:-0.01em;
+    }
+    .fact-card ul{
+      margin:0;
+      padding-left:18px;
+      color:var(--muted);
+    }
+    .fact-card li{
+      margin:0 0 6px;
+      font-size:1rem;
+      line-height:1.62;
+    }
+    .fact-card li:last-child{margin-bottom:0;}
+
+    .icons{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+      justify-content:flex-start;
+      width:min(100%, 760px);
+      margin-left:auto;
+      margin-right:auto;
+      padding-left:42px;
+    }
+    .iconlink{
+      display:inline-flex; align-items:center; gap:9px;
+      padding:8px 12px; border-radius:999px;
+      border:1px solid var(--border);
+      background:color-mix(in srgb, var(--card) 92%, transparent);
+      color:color-mix(in srgb, var(--accent) 76%, var(--text));
+      font-weight:600; transition:all 140ms ease;
+    }
+    .iconlink:hover{
+      transform:translateY(-1px);
+      background:color-mix(in srgb, var(--accent) 8%, var(--card));
+      border-color:color-mix(in srgb, var(--accent) 35%, var(--border));
+      color:var(--text);
+    }
+    .icon{width:18px;height:18px;display:inline-block;color:currentColor;}
+    .icon svg{width:18px;height:18px;display:block;}
+
+    .section{margin-top:28px;}
+    .section-header{display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:14px;}
+    .section h2{margin:0; font-size:1.62rem; letter-spacing:-0.02em;}
+    .section-note{margin:0; color:var(--faint); font-size:1.01rem;}
+    .rule{height:1px; background:linear-gradient(90deg, color-mix(in srgb, var(--text) 55%, var(--border)), transparent); opacity:.7; margin:0 0 18px;}
+
+    .about-panel,
+    .group-panel,
+    .logs-shell{
+      border:1px solid var(--border);
+      border-radius:24px;
+      background:color-mix(in srgb, var(--bg-soft) 94%, transparent);
+      box-shadow:var(--shadow);
+    }
+    .about-panel{padding:22px 24px;}
+    .about-grid{display:grid; grid-template-columns:1.25fr .95fr; gap:22px;}
+    .about-copy{font-family:var(--serif); font-size:1.04rem;}
+    .about-copy p{margin:0 0 14px; color:var(--text);}
+    .about-copy p:last-child{margin-bottom:0;}
+    .about-cards{display:grid; gap:12px;}
+    .mini-card{
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:14px 16px;
+      background:color-mix(in srgb, var(--card) 94%, transparent);
+    }
+    .mini-card h3{margin:0 0 8px; font-size:1rem;}
+    .mini-card p,.mini-card li{color:var(--muted); margin:0; font-size:.96rem;}
+    .mini-card ul{margin:0; padding-left:18px;}
+
+    .project-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+    }
+    .item{
+      border:1px solid var(--border);
+      background:color-mix(in srgb, var(--card) 94%, transparent);
+      border-radius:20px;
+      padding:16px 16px 15px;
+      box-shadow:0 1px 0 rgba(15,23,42,.04);
+      cursor:pointer;
+      transition:all 140ms ease;
+    }
+    .item:hover{
+      transform:translateY(-2px);
+      border-color:color-mix(in srgb, var(--accent) 30%, var(--border));
+      background:color-mix(in srgb, var(--accent) 6%, var(--card));
+    }
+    .item:focus-visible{outline:none; box-shadow:var(--ring); border-color:color-mix(in srgb, var(--accent) 50%, var(--border));}
+    .item-title{display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin:0 0 8px;}
+    .item-title span:first-child{font-size:1.08rem; font-weight:800; letter-spacing:-0.01em;}
+    .item-meta{color:var(--faint); font-size:.9rem; font-weight:700; white-space:nowrap;}
+    .item-desc{margin:0; color:var(--muted); font-size:1rem; line-height:1.68;}
+
+    .group-panel{padding:22px 24px;}
+    .group-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px;}
+    .group-card{
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:16px;
+      background:color-mix(in srgb, var(--card) 94%, transparent);
+    }
+    .group-card h3{margin:0 0 10px; font-size:1.08rem; letter-spacing:-0.01em;}
+    .group-card p{margin:0; color:var(--muted); font-size:1rem;}
+    
+    .logs-shell{padding:22px 24px;}
+    .logs-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+    .subsection h3{margin:0 0 10px; font-size:1.12rem; letter-spacing:-0.01em;}
+    .subsection .grid{display:grid; gap:10px;}
+
+    .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; padding:18px; z-index:100;}
+    .modal[aria-hidden="false"]{display:flex;}
+    .overlay{position:absolute; inset:0; background:rgba(2,6,23,.52);}
+    @media (prefers-color-scheme: dark){ .overlay{background:rgba(0,0,0,.62);} }
+    .dialog{
+      position:relative; z-index:1;
+      width:min(900px, 100%);
+      max-height:min(84vh, 800px);
+      overflow:auto;
+      border-radius:22px;
+      border:1px solid var(--border);
+      background:var(--card);
+      box-shadow:0 30px 80px rgba(0,0,0,.35);
+      padding:20px 20px 16px;
+    }
+    .dialog-header{display:flex; align-items:flex-start; justify-content:space-between; gap:14px; margin-bottom:8px;}
+    .dialog h3{margin:0; font-size:1.25rem; letter-spacing:-0.02em;}
+    .subtitle{margin:4px 0 0; color:var(--faint); font-size:.86rem; font-weight:700;}
+    .close{
+      border:1px solid var(--border); background:color-mix(in srgb, var(--card) 92%, transparent);
+      color:var(--muted); border-radius:999px; height:38px; padding:0 12px; cursor:pointer; font-weight:800;
+    }
+    .close:hover{border-color:color-mix(in srgb, var(--accent) 35%, var(--border)); background:color-mix(in srgb, var(--accent) 10%, var(--card)); color:var(--text);}
+    .content{margin-top:10px; color:var(--muted);}
+    .content p{margin:0 0 10px;}
+    .content .details-heading{margin:0 0 10px; padding-top:12px; border-top:2px solid var(--border);}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+    .chip{font-size:.76rem; font-weight:700; color:var(--muted); border:1px solid var(--border); padding:4px 10px; border-radius:999px; background:color-mix(in srgb, var(--card) 92%, transparent);}
+
+    .figure-grid{display:grid; gap:12px; margin:12px 0 6px;}
+    .figure{margin:0; border:1px solid var(--border); border-radius:14px; overflow:hidden; background:color-mix(in srgb, var(--card) 92%, transparent); display:flex; gap:12px; align-items:center; padding:12px;}
+    .figure-link{flex:0 0 58%; width:58%; display:block;}
+    .figure-link img{width:100%; height:auto; display:block; border-radius:10px;}
+    .figure figcaption{flex:1 1 auto; color:var(--muted); font-size:1rem; line-height:1.65; font-family:var(--serif);}
+    .figure--below{flex-direction:column; align-items:center;}
+    .figure--below .figure-link{width:90%; flex:none;}
+
+    footer{text-align:center; margin-top:30px; color:var(--faint); font-size:.9rem;}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
+    @media (max-width: 900px){
+      .hero-inner{grid-template-columns:1fr; gap:18px;}
+      .photo{margin:0 auto;}
+      .about-grid,.logs-grid,.group-grid,.project-grid{grid-template-columns:1fr;}
+    }
+    @media (max-width: 720px){
+      .wrap{padding:0 16px 64px;}
+      .hero-card,.about-panel,.group-panel,.logs-shell,.dialog{padding-left:16px; padding-right:16px;}
+      .btn{height:38px; padding:0 12px; font-size:.98rem;}
+      .icons{padding-left:0; justify-content:center;}
+      .figure{flex-direction:column; align-items:stretch;}
+      .figure-link{width:100%; flex:none;}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="nav" aria-label="Sections">
+      <button class="btn" data-jump="#top" aria-current="page">Home</button>
+      <button class="btn" data-jump="#interests">Research Interests</button>
+      <button class="btn" data-jump="#group">Research Group</button>
+      <button class="btn" data-jump="#logs-notes">Logs / Notes</button>
+    </nav>
+
+    <header class="hero" id="top">
+      <div class="hero-card">
+        <div class="hero-inner">
+          <div class="photo" aria-label="Profile photo">
+            <img src="data/images/avatar.jpg" alt="Profile photo"
+              onerror="this.remove(); this.parentElement.innerHTML='<div class=&quot;placeholder&quot;>Place <code>avatar.jpg</code> under <code>data/images/</code> or update the image path.</div>';" />
+          </div>
+
+          <div class="hero-text">
+            <h1>
+              <span>Zhenwei Lyu</span>
+              <a class="name-link" href="https://faculty.dlut.edu.cn/lyu/zh_CN/index.htm" lang="zh">(吕振伟)</a>
+            </h1>
+        <div class="subname">Dalian University of Technology · Assistant Professor · Gravitational Waves</div>
+        <p class="intro">
+          My research focuses on gravitational-wave astrophysics, especially on extracting reliable physical information from gravitational-wave signals through waveform modeling and statistical inference. More broadly, it lies at the intersection of strong-field gravity, relativistic astrophysics, and scientific machine learning.
+        </p>
+
+        <div class="icons" aria-label="Links">
+          <a class="iconlink" href="https://github.com/gwlyu" target="_blank" rel="noreferrer" aria-label="GitHub">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </span>
+            GitHub
+          </a>
+          <a class="iconlink" href="https://scholar.google.com/citations?user=cZ-D404AAAAJ&hl=en" target="_blank" rel="noreferrer" aria-label="Google Scholar">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12l-10-5-10 5 10 5 10-5z"></path><path d="M4 15v4c0 .55.45 1 1 1h3"></path><path d="M20 15v4c0 .55-.45 1-1 1h-3"></path></svg>
+            </span>
+            Google Scholar
+          </a>
+          <a class="iconlink" href="https://inspirehep.net/authors/1916556?ui-citation-summary=true" target="_blank" rel="noreferrer" aria-label="INSPIRE">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            </span>
+            INSPIRE
+          </a>
+          <a class="iconlink" href="https://orcid.org/0000-0002-0151-3794" target="_blank" rel="noreferrer" aria-label="ORCID">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="8" cy="8" r="1" fill="currentColor" stroke="none"></circle><path d="M8 11v5"></path><path d="M11 16v-5h2.2a2.5 2.5 0 1 1 0 5H11z"></path></svg>
+            </span>
+            ORCID
+          </a>
+            </div>
+
+        
+          </div>
+        </div>
+
+        <div class="profile-facts" aria-label="Employment and Education">
+          <div class="fact-card">
+            <h3>Employment</h3>
+            <ul>
+              <li>Assistant Professor, Dalian University of Technology, 2024–Present</li>
+              <li>Boya Postdoctoral Fellow, Peking University, 2022–2024</li>
+            </ul>
+          </div>
+          <div class="fact-card">
+            <h3>Education</h3>
+            <ul>
+              <li>Ph.D. in Gravitational Physics, University of Guelph, 2018–2022</li>
+              <li>M.Sc. in Astrophysics, Beijing Normal University, 2015–2018</li>
+              <li>B.Sc. in Physics, Harbin Institute of Technology, 2011–2015</li>
+            </ul>
+          </div>
+        </div>
+
+            
+      </div>
+    </header>
+
+    <section class="section" id="interests" aria-label="Research Interests">
+      <div class="section-header">
+        <h2>Research Interests</h2>
+        <p class="section-note">Selected Directions</p>
+      </div>
+      <div class="rule"></div>
+      <div class="project-grid" id="projectsList" aria-label="Research interests list"></div>
+    </section>
+
+    <section class="section" id="group" aria-label="Research Group">
+      <div class="section-header">
+        <h2>Research Group</h2>
+        <p class="section-note">Ongoing Work</p>
+      </div>
+      <div class="rule"></div>
+      <div class="group-panel">
+        <div class="group-grid">
+          <article class="group-card">
+            <h3>Waveforms &amp; Inference</h3>
+            <p>Waveform construction, parameter estimation, Bayesian inference, and fast posterior methods for gravitational-wave data analysis.</p>
+                      </article>
+          <article class="group-card">
+            <h3>Relativistic Astrophysics</h3>
+            <p>Compact objects, EMRIs, strong-gravity astrophysics, and the astrophysical interpretation of precision gravitational-wave measurements.</p>
+                      </article>
+          <article class="group-card">
+            <h3>Scientific ML</h3>
+            <p>Physics-informed neural networks, neural posterior estimation, and machine-learning tools for forward modeling and inverse problems.</p>
+                      </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="logs-notes" aria-label="Logs and Notes">
+      <div class="section-header">
+        <h2>Logs / Notes</h2>
+        <p class="section-note">Recent Activity and Discussion</p>
+      </div>
+      <div class="rule"></div>
+      <div class="logs-shell">
+        <div class="logs-grid">
+          <div class="subsection">
+            <h3>Logs</h3>
+            <div class="grid" id="logsList" aria-label="Log list"></div>
+          </div>
+          <div class="subsection">
+            <h3>Notes</h3>
+            <div class="grid" id="notesList" aria-label="Notes list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Zhenwei Lyu · Built with plain HTML/CSS/JS · Assisted by LLMs 
+    </footer>
+  </main>
+
+  <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="overlay" id="overlay"></div>
+    <div class="dialog" role="document">
+      <div class="dialog-header">
+        <div>
+          <h3 id="modalTitle">Title</h3>
+          <div class="subtitle" id="modalSubtitle">Subtitle</div>
+        </div>
+        <button class="close" id="closeBtn" type="button">Close</button>
+      </div>
+      <div class="content" id="modalBody"></div>
+      <div class="chips" id="modalChips" aria-label="Tags"></div>
+      <div class="sr-only">Press Escape to close.</div>
+    </div>
+  </div>
+
+  <script src="data/projects.js"></script>
+  <script src="data/logs/2026.js"></script>
+  <script src="data/logs/2025.js" charset="utf-8"></script>
+  <script src="data/notes/2026.js"></script>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const projectsList = document.getElementById('projectsList');
+    const logsList = document.getElementById('logsList');
+    const notesList = document.getElementById('notesList');
+
+    function escapeHtml(s){
+      return String(s ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+    function escapeAttr(s){
+      return escapeHtml(s).replaceAll('\n', '').replaceAll('\r', '');
+    }
+    function protectMathDelimiters(md) {
+      return (md ?? '')
+        .replace(/\\\(/g, '\\\\(')
+        .replace(/\\\)/g, '\\\\)')
+        .replace(/\\\[/g, '\\\\[')
+        .replace(/\\\]/g, '\\\\]');
+    }
+    function mdInlineToSafeHtml(md) {
+      return DOMPurify.sanitize(marked.parseInline(md ?? ''), { USE_PROFILES: { html: true } });
+    }
+    function mdBlockToSafeHtml(md) {
+      return DOMPurify.sanitize(marked.parse(protectMathDelimiters(md)), { USE_PROFILES: { html: true } });
+    }
+    function typesetLatex(root = document.body) {
+      if (window.MathJax && MathJax.typesetPromise) return MathJax.typesetPromise([root]);
+      return Promise.resolve();
+    }
+
+    function renderFigures(figures){
+      if (!Array.isArray(figures) || figures.length === 0) return '';
+      return `<div class="figure-grid">${figures.map(renderFigure).filter(Boolean).join('')}</div>`;
+    }
+    function renderFigure(f){
+      const src = escapeAttr(f?.src || '');
+      if (!src) return '';
+      const alt = escapeHtml(f?.alt || '');
+      const caption = f?.caption ? `<figcaption>${escapeHtml(f.caption)}</figcaption>` : '';
+      const layout = (f?.layout || 'right').toLowerCase();
+      return layout === 'below'
+        ? `<figure class="figure figure--below"><a class="figure-link" href="${src}" target="_blank" rel="noopener noreferrer"><img src="${src}" alt="${alt}" loading="lazy"></a>${caption}</figure>`
+        : `<figure class="figure"><a class="figure-link" href="${src}" target="_blank" rel="noopener noreferrer"><img src="${src}" alt="${alt}" loading="lazy"></a>${caption}</figure>`;
+    }
+
+    function makeItemCard(entry, kind){
+      const div = document.createElement('div');
+      div.className = 'item';
+      div.tabIndex = 0;
+      div.setAttribute('role', 'button');
+      div.setAttribute('aria-label', `Open ${kind}: ${entry.title}`);
+      div.innerHTML = `
+        <div class="item-title">
+          <span>${escapeHtml(entry.title)}</span>
+          <span class="item-meta">${escapeHtml(entry.meta || '')}</span>
+        </div>
+        <p class="item-desc">${escapeHtml(entry.summary || '')}</p>
+      `;
+      const open = () => openModal(entry, kind);
+      div.addEventListener('click', (e) => {
+        const interactive = e.target.closest('a, button, input, textarea, select, summary, [role="button"]');
+        if (interactive && interactive !== div) return;
+        open();
+      });
+      div.addEventListener('keydown', (e) => {
+        if ((e.key === 'Enter' || e.key === ' ') && document.activeElement === div) {
+          e.preventDefault();
+          open();
+        }
+      });
+      return div;
+    }
+
+    (window.PROJECTS || []).forEach(p => projectsList.appendChild(makeItemCard(p, 'research interest')));
+    (window.WEEKLY_LOGS || []).forEach(w => logsList.appendChild(makeItemCard(w, 'log')));
+    (window.NOTES || []).forEach(n => notesList.appendChild(makeItemCard(n, 'note')));
+
+    const navButtons = Array.from(document.querySelectorAll('.btn[data-jump]'));
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.querySelector(btn.getAttribute('data-jump'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    const sections = ['#top', '#interests', '#group', '#logs-notes'].map(sel => document.querySelector(sel));
+    const setActive = (id) => {
+      navButtons.forEach(b => {
+        const isActive = b.getAttribute('data-jump') === '#' + id;
+        if (isActive) b.setAttribute('aria-current', 'page');
+        else b.removeAttribute('aria-current');
+      });
+    };
+    const obs = new IntersectionObserver((entries) => {
+      const top = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (top) setActive(top.target.id);
+    }, { rootMargin: '-15% 0px -68% 0px', threshold: [0.12, 0.2, 0.35, 0.5] });
+    sections.filter(Boolean).forEach(s => obs.observe(s));
+
+    const modal = document.getElementById('modal');
+    const overlay = document.getElementById('overlay');
+    const closeBtn = document.getElementById('closeBtn');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSubtitle = document.getElementById('modalSubtitle');
+    const modalBody = document.getElementById('modalBody');
+    const modalChips = document.getElementById('modalChips');
+    let lastFocus = null;
+
+    function openModal(entry, kind){
+      lastFocus = document.activeElement;
+      modalTitle.textContent = entry.title || '';
+      modalSubtitle.textContent = entry.meta ? `${entry.meta} · ${kind}` : kind;
+      const parts = [];
+      if (entry.summary) {
+        parts.push(`<p class="details-heading"><strong>Summary:</strong></p>`);
+        parts.push(`<div class="md">${mdBlockToSafeHtml(entry.summary)}</div>`);
+      }
+      parts.push(renderFigures(entry.figures));
+      const detailsMd = Array.isArray(entry.details_md) ? entry.details_md.join('\n\n') : entry.details_md;
+      if (detailsMd && detailsMd.trim()) {
+        parts.push(`<p class="details-heading"><strong>Details:</strong></p>`);
+        parts.push(`<div class="md">${mdBlockToSafeHtml(detailsMd)}</div>`);
+      } else if (Array.isArray(entry.details) && entry.details.length) {
+        parts.push(`<p class="details-heading"><strong>Details:</strong></p><ul class="details-list md">`);
+        for (const line of entry.details) parts.push(`<li>${mdInlineToSafeHtml(line)}</li>`);
+        parts.push(`</ul>`);
+      }
+      if (Array.isArray(entry.links) && entry.links.length){
+        parts.push(`<p class="details-heading"><strong>Links:</strong></p><ul>`);
+        for (const l of entry.links){
+          parts.push(`<li><a href="${escapeAttr(l.href)}" target="_blank" rel="noreferrer">${escapeHtml(l.label)}</a></li>`);
+        }
+        parts.push(`</ul>`);
+      }
+      modalBody.innerHTML = parts.join('');
+      if (window.MathJax?.typesetClear) MathJax.typesetClear([modalBody]);
+      typesetLatex(modalBody);
+      modalChips.innerHTML = '';
+      (entry.tags || entry.tag || []).forEach(t => {
+        const span = document.createElement('span');
+        span.className = 'chip';
+        span.textContent = t;
+        modalChips.appendChild(span);
+      });
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+    function closeModal(){
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+    overlay.addEventListener('click', closeModal);
+    closeBtn.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+      if (modal.getAttribute('aria-hidden') === 'false' && e.key === 'Escape') closeModal();
+    });
+    modal.addEventListener('keydown', (e) => {
+      if (modal.getAttribute('aria-hidden') !== 'false' || e.key !== 'Tab') return;
+      const focusables = modal.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
+      const list = Array.from(focusables).filter(el => !el.hasAttribute('disabled'));
+      if (!list.length) return;
+      const first = list[0], last = list[list.length - 1];
+      if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    });
+  </script>
+</body>
+</html>
